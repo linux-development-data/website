@@ -1,0 +1,7 @@
+<item>
+  <title>{{fd2rss rss_title}}</title>
+  <link>{{website_url}}{{fill fd_url}}</link>
+  <description>{{fd2rss rss_description}}</description>
+  <pubDate>{{fill rss_pubdate}}</pubDate>
+  <guid>{{website_url}}{{fill fd_url}}</guid>
+</item>

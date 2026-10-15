@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="The Linux kernel as data: thirty-five years of kernel development (1991–2026) — mailing lists, commits, bugs, MAINTAINERS and the source tree — joined in one research database.">
+  <meta name="theme-color" content="#fbf9f3">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg">
+  <link rel="canonical" href="{{canonical_url}}">
+  <link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="Linux kernel as data: news">
+  {{if hascode}} {{insert head_highlight.html}} {{end}}
+  <link rel="stylesheet" href="/css/style.css">
+  <title>{{ispage index.html}}{{title}}{{else}}{{title}} · Linux kernel as data{{end}}</title>
+</head>
+<body id="page-top">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <a class="site-brand" href="/"><img src="/assets/img/logo.svg" alt="" width="30" height="30"><span>Linux kernel <span class="brand-detail">as data</span></span></a>
+  <span class="current-section-label" aria-hidden="true"></span>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-navigation" hidden>Menu <span aria-hidden="true">＋</span></button>
+  <nav class="site-navigation" id="site-navigation" aria-label="Main navigation">
+{{insert navigation-links.html}}
+  </nav>
+</header>
+<aside class="scroll-navigation" hidden aria-label="Site sections">
+  <a class="scroll-navigation-brand" href="/">Linux kernel as data</a>
+  <nav aria-label="Section navigation">
+{{insert navigation-links.html}}
+  </nav>
+  <a class="back-to-top" href="#page-top">Back to top <span aria-hidden="true">↑</span></a>
+</aside>
+<main class="page-content" id="main-content" tabindex="-1">
+{{ispage index}}<div class="page-wide wrap">{{else}}<div class="article-layout wrap"><aside class="article-nav" aria-label="On this page"><strong>On this page</strong>{{toc 2 2}}</aside><article class="article">{{end}}
