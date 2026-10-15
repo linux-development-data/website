@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="The Linux kernel as data: thirty-five years of kernel development (1991–2026) — mailing lists, commits, bugs, MAINTAINERS and the source tree — joined in one research database.">
+  <meta name="theme-color" content="#fbf9f3">
+  <link rel="icon" type="image/svg+xml" href="/lk-as-data/assets/img/logo.svg">
+  <link rel="canonical" href="https://linux-development-data.github.io/lk-as-data/dataset/">
+  <link rel="alternate" type="application/rss+xml" href="/lk-as-data/post/index.xml" title="Linux kernel as data: news">
+   <!-- Syntax colours for highlight.js are defined in /css/style.css (Tux palette). -->
+ 
+  <link rel="stylesheet" href="/lk-as-data/css/style.css">
+  <title>The dataset · Linux kernel as data</title>
+</head>
+<body id="page-top">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <a class="site-brand" href="/lk-as-data/"><img src="/lk-as-data/assets/img/logo.svg" alt="" width="30" height="30"><span>Linux kernel <span class="brand-detail">as data</span></span></a>
+  <span class="current-section-label" aria-hidden="true"></span>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-navigation" hidden>Menu <span aria-hidden="true">＋</span></button>
+  <nav class="site-navigation" id="site-navigation" aria-label="Main navigation">
+      <a href="/lk-as-data/dataset/">Dataset</a>
+      <a href="/lk-as-data/pipeline/">Pipeline</a>
+      <a href="/lk-as-data/methods/">Methods</a>
+      <a href="/lk-as-data/access/">Access</a>
+      <a href="/lk-as-data/post/">News</a>
+      <a class="nav-source" href="https://github.com/linux-development-data">GitHub <span aria-hidden="true">↗</span></a>
+
+  </nav>
+</header>
+<aside class="scroll-navigation" hidden aria-label="Site sections">
+  <a class="scroll-navigation-brand" href="/lk-as-data/">Linux kernel as data</a>
+  <nav aria-label="Section navigation">
+      <a href="/lk-as-data/dataset/">Dataset</a>
+      <a href="/lk-as-data/pipeline/">Pipeline</a>
+      <a href="/lk-as-data/methods/">Methods</a>
+      <a href="/lk-as-data/access/">Access</a>
+      <a href="/lk-as-data/post/">News</a>
+      <a class="nav-source" href="https://github.com/linux-development-data">GitHub <span aria-hidden="true">↗</span></a>
+
+  </nav>
+  <a class="back-to-top" href="#page-top">Back to top <span aria-hidden="true">↑</span></a>
+</aside>
+<main class="page-content" id="main-content" tabindex="-1">
+<div class="article-layout wrap"><aside class="article-nav" aria-label="On this page"><strong>On this page</strong><div class="franklin-toc"><ol><li><a href="#coverage">Coverage</a></li><li><a href="#mails_the_as-posted_record">mails: the as-posted record</a></li><li><a href="#commits_the_accepted_record">commits: the accepted record</a></li><li><a href="#bugzilla_bug_reports">bugzilla: bug reports</a></li><li><a href="#maintainers_and_filegraph_who_governs_what">maintainers and filegraph: who governs what</a></li><li><a href="#idres_and_org_people_and_employers">idres and org: people and employers</a></li><li><a href="#link_from_email_to_commit">link: from email to commit</a></li><li><a href="#meta_provenance_and_the_health_gate">meta: provenance and the health gate</a></li></ol></div></aside><article class="article">
+<h1 id="the_dataset"><a href="#the_dataset" class="header-anchor">The dataset</a></h1>
+<p class="lead">One PostgreSQL 18 database, <code>linuxkernel</code>, about 595 GB, plus a 14 GB historical database exposed to it as a foreign schema. Sixteen schemas. Every figure on this page was read from the live database on 13 July 2026.</p>
+<h2 id="coverage"><a href="#coverage" class="header-anchor">Coverage</a></h2>
+<table><tr><th align="left">Record</th><th align="left">Extent</th></tr><tr><td align="left">Span</td><td align="left">1987 → June 2026</td></tr><tr><td align="left">Mailing-list email</td><td align="left">29,556,155 postings / 18,081,107 unique messages, across 519 canonical lists &#40;332 of them kernel lists&#41;</td></tr><tr><td align="left">Commits</td><td align="left">1,511,507, all <code>torvalds/linux</code> mainline, 1991 → 2026-06-07</td></tr><tr><td align="left">Bug reports</td><td align="left">44,128 real bugs &#40;2002 → 2026&#41;, 380,260 comments</td></tr><tr><td align="left">MAINTAINERS</td><td align="left">6,149 revisions of the file, 8,782 stitched maintainer tenures</td></tr><tr><td align="left">Source tree</td><td align="left">116 release snapshots, 1991-09-17 → 2026-04-12</td></tr><tr><td align="left">Usenet / netnews</td><td align="left">2,276,867 unique messages, 1987-01-16 → 2013-06-23 &#40;frozen&#41;</td></tr></table>
+<h2 id="mails_the_as-posted_record"><a href="#mails_the_as-posted_record" class="header-anchor">mails: the as-posted record</a></h2>
+<p>Every message that reached a kernel list: patches, reviews, flames and bug reports, accepted or not. Rejected and abandoned patches live here and nowhere else. The schema stores <strong>two grains at once</strong>:</p>
+<ul>
+<li><p><strong><code>mails.posts</code></strong>: 29,556,155 rows, one per &#40;message, list&#41;.</p>
+</li>
+<li><p><strong><code>mails.messages</code></strong>: 18,081,107 rows, one per unique message.</p>
+</li>
+</ul>
+<p>A message cross-posted to four lists is four postings and one message. Both counts are correct; they answer different questions. The ratio between them climbs from 1.00× in 1995 to 1.99× in 2023, so counting postings inflates modern activity against the 1990s roughly twofold.</p>
+<p>Around that core sit the message bodies, the address dimension, the review-trailer graph &#40;<code>mails.roles</code>, 22.4M rows&#41;, threads built from explicit <code>In-Reply-To</code> and <code>References</code> headers, and a list dimension that records which lists are kernel lists.</p>
+<p><strong>Entry points:</strong> <code>mails.emails_unique</code> for message-level analysis, <code>mails.emails_panel</code> for anything longitudinal.</p>
+<h2 id="commits_the_accepted_record"><a href="#commits_the_accepted_record" class="header-anchor">commits: the accepted record</a></h2>
+<p><code>torvalds/linux</code> traversed in full: 1,511,507 commits with a <strong>closed DAG</strong>, so every parent edge resolves. Sign-off, review and ack trailers become a collaboration graph.</p>
+<p><strong>Entry point:</strong> <code>commits.mainline</code> &#40;1,379,463 non-merge commits&#41;. Use <code>author_date</code>, never <code>committer_date</code>: the latter compresses all pre-2002 history into 2002, the year of the BitKeeper import.</p>
+<h2 id="bugzilla_bug_reports"><a href="#bugzilla_bug_reports" class="header-anchor">bugzilla: bug reports</a></h2>
+<p>44,128 real bugs out of an id range of 221,620 that was walked exhaustively. Deleted ids are stored as stubs, so absence is recorded rather than inferred.</p>
+<p><strong>Entry point:</strong> <code>bugzilla.bug_universe</code>.</p>
+<h2 id="maintainers_and_filegraph_who_governs_what"><a href="#maintainers_and_filegraph_who_governs_what" class="header-anchor">maintainers and filegraph: who governs what</a></h2>
+<p>MAINTAINERS is parsed as a time series rather than a snapshot: 41,134 field episodes with validity windows. The <code>F:</code> &#40;file pattern&#41; field only enters the file on 2007-10-12, so the build refuses any file→subsystem map dated before then.</p>
+<p><code>filegraph</code> is the kernel source tree itself, per release, over 116 snapshots: 191,743 paths and 63,178,283 dependency edges &#40;C includes, Kconfig, Makefile, devicetree, Rust&#41;, with a bridge from MAINTAINERS globs to the real files they matched.</p>
+<blockquote>
+<p><strong>Two limits, stated up front.</strong> The dependency graph is multiplexed by architecture &#40;<code>#include &lt;asm/io.h&gt;</code> names a different file on every arch&#41;, so filter on <code>arch</code>. And it is static, not build-resolved: it does not know your <code>.config</code>.</p>
+</blockquote>
+<h2 id="idres_and_org_people_and_employers"><a href="#idres_and_org_people_and_employers" class="header-anchor">idres and org: people and employers</a></h2>
+<p><code>idres</code> resolves 856,361 addresses to 591,745 persons, with per-edge rule provenance. Measured against a held-out slice of the kernel&#39;s own <code>.mailmap</code>: 91.9&#37; recall, cluster precision 0.978, published at three operating points so a result can be shown to survive the merge threshold.</p>
+<p><code>org</code> profiles 253,763 email domains and 1,046 organisations with dated validity windows, so a corporate rename reads as a rename rather than as everybody changing jobs at once.</p>
+<h2 id="link_from_email_to_commit"><a href="#link_from_email_to_commit" class="header-anchor">link: from email to commit</a></h2>
+<p>406,981 exactly resolved message→commit pairs, joined on the kernel&#39;s own <code>Link:</code>, <code>Closes:</code> and <code>Message-Id:</code> trailers, with no inference. Coverage depends strongly on the era, so never publish a pooled match rate.</p>
+<h2 id="meta_provenance_and_the_health_gate"><a href="#meta_provenance_and_the_health_gate" class="header-anchor">meta: provenance and the health gate</a></h2>
+<p>Every collection wave, tool version and clone SHA is recorded. A row-count contract over derived tables and a set of semantic invariants form the regression net:</p>
+<pre><code class="language-sql">SELECT meta.assert_all&#40;&#41;;   -- raises if the database is silently broken</code></pre>
+</article></div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><a class="footer-brand" href="/lk-as-data/">Linux kernel as data</a><p>Thirty-five years of kernel development, joined, keyed and checked.</p></div>
+    <nav aria-label="Footer navigation"><a href="/lk-as-data/methods/">Methods &amp; traps</a><a href="/lk-as-data/citing/">How to cite</a><a href="/lk-as-data/post/">Project news</a><a href="https://github.com/linux-development-data">Source code</a></nav>
+    <p class="footer-note">Code MIT licensed · No person-level data published · Built with <a href="https://franklinjl.org/">Franklin.jl</a> · Layout after <a href="https://github.com/statistical-network-analysis-with-Julia/statistical-network-analysis-with-Julia.github.io">statistical-network-analysis-with-Julia</a></p>
+  </div>
+</footer>
+ <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/sql.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<script>hljs.highlightAll();</script>
+ 
+<script src="/lk-as-data/assets/site.js" defer></script>
+</body>
+</html>

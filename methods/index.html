@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="The Linux kernel as data: thirty-five years of kernel development (1991–2026) — mailing lists, commits, bugs, MAINTAINERS and the source tree — joined in one research database.">
+  <meta name="theme-color" content="#fbf9f3">
+  <link rel="icon" type="image/svg+xml" href="/lk-as-data/assets/img/logo.svg">
+  <link rel="canonical" href="https://linux-development-data.github.io/lk-as-data/methods/">
+  <link rel="alternate" type="application/rss+xml" href="/lk-as-data/post/index.xml" title="Linux kernel as data: news">
+   <!-- Syntax colours for highlight.js are defined in /css/style.css (Tux palette). -->
+ 
+  <link rel="stylesheet" href="/lk-as-data/css/style.css">
+  <title>Methods and traps · Linux kernel as data</title>
+</head>
+<body id="page-top">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <a class="site-brand" href="/lk-as-data/"><img src="/lk-as-data/assets/img/logo.svg" alt="" width="30" height="30"><span>Linux kernel <span class="brand-detail">as data</span></span></a>
+  <span class="current-section-label" aria-hidden="true"></span>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-navigation" hidden>Menu <span aria-hidden="true">＋</span></button>
+  <nav class="site-navigation" id="site-navigation" aria-label="Main navigation">
+      <a href="/lk-as-data/dataset/">Dataset</a>
+      <a href="/lk-as-data/pipeline/">Pipeline</a>
+      <a href="/lk-as-data/methods/">Methods</a>
+      <a href="/lk-as-data/access/">Access</a>
+      <a href="/lk-as-data/post/">News</a>
+      <a class="nav-source" href="https://github.com/linux-development-data">GitHub <span aria-hidden="true">↗</span></a>
+
+  </nav>
+</header>
+<aside class="scroll-navigation" hidden aria-label="Site sections">
+  <a class="scroll-navigation-brand" href="/lk-as-data/">Linux kernel as data</a>
+  <nav aria-label="Section navigation">
+      <a href="/lk-as-data/dataset/">Dataset</a>
+      <a href="/lk-as-data/pipeline/">Pipeline</a>
+      <a href="/lk-as-data/methods/">Methods</a>
+      <a href="/lk-as-data/access/">Access</a>
+      <a href="/lk-as-data/post/">News</a>
+      <a class="nav-source" href="https://github.com/linux-development-data">GitHub <span aria-hidden="true">↗</span></a>
+
+  </nav>
+  <a class="back-to-top" href="#page-top">Back to top <span aria-hidden="true">↑</span></a>
+</aside>
+<main class="page-content" id="main-content" tabindex="-1">
+<div class="article-layout wrap"><aside class="article-nav" aria-label="On this page"><strong>On this page</strong><div class="franklin-toc"><ol><li><a href="#six_ways_to_publish_a_wrong_number">Six ways to publish a wrong number</a></li><li><a href="#entry_points">Entry points</a></li><li><a href="#the_expert_panels">The expert panels</a></li></ol></div></aside><article class="article">
+<h1 id="methods_and_traps"><a href="#methods_and_traps" class="header-anchor">Methods and traps</a></h1>
+<p class="lead">Most quantitative work on the Linux kernel starts by scraping something and counting rows. That is where errors get in. Each trap below was made, caught, and then designed against.</p>
+<h2 id="six_ways_to_publish_a_wrong_number"><a href="#six_ways_to_publish_a_wrong_number" class="header-anchor">Six ways to publish a wrong number</a></h2>
+<ol>
+<li><p><strong>Counting postings as messages.</strong> Cross-posting grew over time, so a raw count of mail rows overstates the 2020s against the 1990s by about two times. Use <code>mails.emails_unique</code>.</p>
+</li>
+<li><p><strong>Choosing kernel lists by hostname.</strong> A hostname filter silently deletes the whole graphics subsystem. Use the list dimension&#39;s <code>is_kernel</code> flag.</p>
+</li>
+<li><p><strong>Filtering commits by project name.</strong> Parallel collection gave mainline commits names like <code>m1</code>…<code>m21</code>; filtering them out drops 11.5&#37; of history and invents a gap in 2022. Use <code>commits.mainline</code>.</p>
+</li>
+<li><p><strong>Using the committer date.</strong> It compresses all pre-2002 history into the year of the BitKeeper import. Use <code>author_date</code>.</p>
+</li>
+<li><p><strong>Building a time trend from raw yearly series.</strong> Lists enter and leave the archives. Use <code>mails.emails_panel</code>, 61 lists present in every year from 2008 to 2024.</p>
+</li>
+<li><p><strong>Mapping files to subsystems before 2007.</strong> The <code>F:</code> field did not exist yet. Any such map is a fabrication.</p>
+</li>
+</ol>
+<h2 id="entry_points"><a href="#entry_points" class="header-anchor">Entry points</a></h2>
+<table><tr><th align="left">Question</th><th align="left">Query this</th><th align="left">Not this</th></tr><tr><td align="left">How much email?</td><td align="left"><code>mails.emails_unique</code></td><td align="left"><code>mails.rawdata</code></td></tr><tr><td align="left">Any time trend</td><td align="left"><code>mails.emails_panel</code></td><td align="left">any raw yearly series</td></tr><tr><td align="left">Commits</td><td align="left"><code>commits.mainline</code></td><td align="left">raw commits filtered by <code>project_name</code></td></tr><tr><td align="left">Bugs</td><td align="left"><code>bugzilla.bug_universe</code></td><td align="left">the collected id range</td></tr><tr><td align="left">Dependencies</td><td align="left"><code>filegraph.edge_dep</code> with an <code>arch</code> filter</td><td align="left"><code>edge_dep</code> unfiltered</td></tr><tr><td align="left">Who is a person</td><td align="left"><code>idres.person</code></td><td align="left">any older identity table</td></tr></table>
+<h2 id="the_expert_panels"><a href="#the_expert_panels" class="header-anchor">The expert panels</a></h2>
+<p>In July 2026 the database was put in front of successive panels of independent reviewers: a PostgreSQL engineer, a data engineer, a kernel-community developer, a computational social scientist, a record-linkage methodologist, a name-matching specialist, a labor economist and a data-governance reviewer. An adversarial fact-checker then tried to refute every claim against the live database and the upstream sources.</p>
+<p>Several reviewers were wrong, and that was the most useful result. A proposal to deduplicate &quot;twin&quot; commits would have deleted real ones. A proposed backfill of three orphan roots was refused once upstream showed Linux really is a four-root DAG. A rule to infer a posting&#39;s list from its siblings was measured against ground truth, found wrong 61&#37; of the time, and dropped.</p>
+<p>Read each reviewer&#39;s view at <a href="https://linux-development-data.github.io/linuxkernel-db/lenses/">linuxkernel-db</a>.</p>
+</article></div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><a class="footer-brand" href="/lk-as-data/">Linux kernel as data</a><p>Thirty-five years of kernel development, joined, keyed and checked.</p></div>
+    <nav aria-label="Footer navigation"><a href="/lk-as-data/methods/">Methods &amp; traps</a><a href="/lk-as-data/citing/">How to cite</a><a href="/lk-as-data/post/">Project news</a><a href="https://github.com/linux-development-data">Source code</a></nav>
+    <p class="footer-note">Code MIT licensed · No person-level data published · Built with <a href="https://franklinjl.org/">Franklin.jl</a> · Layout after <a href="https://github.com/statistical-network-analysis-with-Julia/statistical-network-analysis-with-Julia.github.io">statistical-network-analysis-with-Julia</a></p>
+  </div>
+</footer>
+ <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/sql.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<script>hljs.highlightAll();</script>
+ 
+<script src="/lk-as-data/assets/site.js" defer></script>
+</body>
+</html>
