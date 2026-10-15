@@ -1,9 +1,9 @@
-# lk-as-data
+# website
 
 Showcase website for the *Linux kernel as data* project, built with
 [Franklin.jl](https://franklinjl.org).
 
-**Live:** https://linux-development-data.github.io/lk-as-data/
+**Live:** https://linux-development-data.github.io/website/
 
 The layout follows the
 [statistical-network-analysis-with-Julia](https://github.com/statistical-network-analysis-with-Julia/statistical-network-analysis-with-Julia.github.io)

@@ -29,7 +29,7 @@ jobs:
         run: julia --project -e 'using Pkg; Pkg.instantiate()'
 
       # optimize() reads `prepath` from config.md and rewrites absolute links
-      # to /lk-as-data/... for the project Pages URL.
+      # to /website/... for the project Pages URL.
       - name: Build site
         run: |
           julia --project -e '
