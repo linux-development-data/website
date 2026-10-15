@@ -1,4 +1,4 @@
-Sitemap: https://linux-development-data.github.io/lk-as-data/sitemap.xml
+Sitemap: https://linux-development-data.github.io/website/sitemap.xml
 
 User-agent: *
 Disallow:
